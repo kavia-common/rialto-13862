@@ -19604,3 +19604,49 @@ TimeoutError
 2025-08-29 09:27:40,454 - Knowledge - INFO - Found code_base: <app.utils.kg_build.knowledge.KnowledgeCodeBase object at 0x7f86a9d3abd0>
 2025-08-29 09:27:40,454 - Knowledge - INFO - persist ingested knowledge for /app/data/b2c/13862/b4939he/rialto-13862/tests/serverManager/unittests/common/SessionServerAppManagerTestsFixture.cpp
 2025-08-29 09:27:41,239 - Knowledge - INFO - persist search terms embedding for tests/serverManager/unittests/common/SessionServerAppManagerTestsFixture.cpp
+2025-08-29 09:28:44,313 - Knowledge - ERROR - _service_ingest_queue had exception  for file /app/data/b2c/13862/b4939he/rialto-13862/tests/media/server/gstplayer/genericPlayer/GstGenericPlayerPrivateTest.cpp
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/asyncio/tasks.py", line 500, in wait_for
+    return fut.result()
+           ^^^^^^^^^^^^
+  File "/app/app/utils/kg_build/knowledge.py", line 1723, in _ingest_file
+    response = await llm.llm_interaction_wrapper(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/llm_wrapper/core/llm_interface.py", line 341, in llm_interaction_wrapper
+    completion = await invoke_llm()
+                 ^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/llm_wrapper/core/llm_interface.py", line 287, in invoke_llm
+    return await loop.run_in_executor(None, blocking_call_wrapper)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/app/app/utils/kg_build/knowledge.py", line 324, in _service_ingest_queue
+    file_info = self.loop_worker.run_until_complete(asyncio.wait_for( knowledge._ingest_file(filename, self.mongo_handler), knowledge.timeout))
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/asyncio/tasks.py", line 502, in wait_for
+    raise exceptions.TimeoutError() from exc
+TimeoutError
+2025-08-29 09:28:44,536 - Knowledge - INFO - process ingested knowledge for /app/data/b2c/13862/b4939he/rialto-13862/tests/media/server/gstplayer/genericPlayer/GstGenericPlayerPrivateTest.cpp
+2025-08-29 09:28:44,757 - Knowledge - INFO - Found code-base-name: https://github.com/kavia-common/rialto-13862.git:kavia-6.0.0-rc1
+2025-08-29 09:28:44,757 - Knowledge - INFO - Found code_base: <app.utils.kg_build.knowledge.KnowledgeCodeBase object at 0x7f86a9d3abd0>
+2025-08-29 09:28:44,757 - Knowledge - INFO - persist ingested knowledge for /app/data/b2c/13862/b4939he/rialto-13862/tests/media/server/gstplayer/genericPlayer/GstGenericPlayerPrivateTest.cpp
+2025-08-29 09:28:49,626 - Knowledge - INFO - done ingest for /app/data/b2c/13862/b4939he/rialto-13862/tests/media/server/gstplayer/genericPlayer/tasksTests/AttachSourceTest.cpp
+2025-08-29 09:28:49,717 - Knowledge - INFO - process ingested knowledge for /app/data/b2c/13862/b4939he/rialto-13862/tests/media/server/gstplayer/genericPlayer/tasksTests/AttachSourceTest.cpp
+2025-08-29 09:28:49,821 - Knowledge - INFO - Found code-base-name: https://github.com/kavia-common/rialto-13862.git:kavia-6.0.0-rc1
+2025-08-29 09:28:49,821 - Knowledge - INFO - Found code_base: <app.utils.kg_build.knowledge.KnowledgeCodeBase object at 0x7f86a9d3abd0>
+2025-08-29 09:28:49,821 - Knowledge - INFO - persist ingested knowledge for /app/data/b2c/13862/b4939he/rialto-13862/tests/media/server/gstplayer/genericPlayer/tasksTests/AttachSourceTest.cpp
+2025-08-29 09:28:50,106 - Knowledge - INFO - done ingest for /app/data/b2c/13862/b4939he/rialto-13862/tests/media/client/main/control/ControlTest.cpp
+2025-08-29 09:28:50,123 - Knowledge - INFO - process ingested knowledge for /app/data/b2c/13862/b4939he/rialto-13862/tests/media/client/main/control/ControlTest.cpp
+2025-08-29 09:28:50,153 - Knowledge - INFO - Found code-base-name: https://github.com/kavia-common/rialto-13862.git:kavia-6.0.0-rc1
+2025-08-29 09:28:50,153 - Knowledge - INFO - Found code_base: <app.utils.kg_build.knowledge.KnowledgeCodeBase object at 0x7f86a9d3abd0>
+2025-08-29 09:28:50,153 - Knowledge - INFO - persist ingested knowledge for /app/data/b2c/13862/b4939he/rialto-13862/tests/media/client/main/control/ControlTest.cpp
+2025-08-29 09:28:50,249 - Knowledge - INFO - Knowledge creation complete
+2025-08-29 09:28:50,251 - Knowledge - INFO - Updating org costs, total cost: 0.11132220000000001
+2025-08-29 09:28:50,832 - Knowledge - INFO - Saving knowledge to Redis...
+2025-08-29 09:28:51,227 - Knowledge - INFO - Knowledge saved to Redis successfully
